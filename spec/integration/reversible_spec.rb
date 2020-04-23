@@ -37,6 +37,10 @@ RSpec.describe 'Reversible' do
     Migrator.migrate
   end
 
+  after(:all) do
+    Migrator.migrate
+  end
+
   it 'reverses check constraints' do
     expect(TableConstraint.where(constraint_name: 'no_r_titles')).to exist
     Migrator.down(2)
